@@ -1,4 +1,4 @@
-package de.bht.pr2.lession09.e06_calculator;
+package de.bht.pr2.lab6;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,7 +9,17 @@ import javafx.scene.control.Label;
  * Monolithischer Controller fuer den Ganzzahlen-Calculator.
  * Enthaelt sowohl die UI-Logik als auch die Berechnungslogik.
  *
- * Diese Anwendung wird in Übung6 (lab06) zu MVP refaktoriert werden!
+ * UEBUNG 6: Diese Klasse soll erweitert und zu MVP refaktoriert werden!
+ *
+ * Aufgaben:
+ * 1. Weitere Operatoren implementieren (-, *, /)
+ * 2. Division durch Null behandeln
+ * 3. Zu MVP-Architektur refaktorieren:
+ *    - Model: Berechnungslogik und Zustand
+ *    - View: UI-Interaktionen (dieser Controller wird duenner)
+ *    - Presenter: Koordination zwischen Model und View
+ *
+ * Clear und Delete sind bereits implementiert.
  */
 public class CalculatorController {
 

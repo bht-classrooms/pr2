@@ -1,4 +1,4 @@
-package de.bht.pr2.lession09.e06_calculator;
+package de.bht.pr2.lab6;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +15,7 @@ import java.io.IOException;
  * Calculator-Anwendung mit FXML und CSS.
  * Demonstriert eine monolithische JavaFX-Anwendung.
  *
- * Diese Anwendung wird in Übung6 (lab06) zu MVP refaktoriert werden!
+ * UEBUNG 6: Diese Anwendung soll zu MVP refaktoriert werden!
  */
 public class CalculatorApplication extends Application {
 
