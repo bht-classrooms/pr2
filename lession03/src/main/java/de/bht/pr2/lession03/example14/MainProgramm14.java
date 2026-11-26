@@ -6,6 +6,19 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * HashSet - Objekte durchlaufen.
+ *
+ * Neue Konzepte in dieser Klasse:
+ * - Ein Set hat keinen Index, darum geht keine klassische for-Schleife
+ *   mit get(i). Es gibt drei Moeglichkeiten:
+ *   1. for-each-Schleife -- der einfachste Weg.
+ *   2. Iterator mit hasNext()/next() (siehe example11) -- funktioniert fuer
+ *      jede Collection, also auch fuer Sets.
+ *   3. Das Set in eine ArrayList kopieren und dann mit Index durchlaufen.
+ * - Die Reihenfolge beim Durchlaufen eines HashSet ist nicht festgelegt.
+ *   Erst die Kopie in eine ArrayList hat eine feste Reihenfolge (mit Index).
+ */
 public class MainProgramm14 {
 
   // HashSet - Objekte durchlaufen

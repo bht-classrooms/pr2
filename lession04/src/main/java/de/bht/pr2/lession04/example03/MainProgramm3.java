@@ -5,6 +5,22 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * HashMap - weitere Methoden.
+ *
+ * Neue Konzepte in dieser Klasse:
+ * - containsKey(key) prueft, ob ein Schluessel vorhanden ist
+ *   (analog prueft containsValue(value), ob ein Wert vorhanden ist).
+ * - size() liefert die Anzahl der Schluessel-Wert-Paare.
+ * - values() liefert alle Werte als {@code Collection<Schiff>}. Das ist weder
+ *   eine List noch ein Set: Werte koennen doppelt vorkommen, und eine
+ *   Reihenfolge ist nicht garantiert. Durchlaufen geht mit der for-each-Schleife.
+ * - isEmpty() prueft, ob die Map leer ist; clear() entfernt alle Paare.
+ * - putAll(andereMap) uebernimmt alle Paare einer anderen Map. Vorhandene
+ *   Schluessel wuerden dabei ueberschrieben (wie bei put()).
+ * - Explizite Typ-Parameter wie {@code new HashMap<String, Schiff>()} sind
+ *   gleichwertig zum Diamond-Operator {@code new HashMap<>()}.
+ */
 public class MainProgramm3 {
 
   // HashMap - Methoden
@@ -32,6 +48,7 @@ public class MainProgramm3 {
     System.out.println("Groesse: " + groesse);
 
     System.out.println("----- values() -----");
+    // Nur die Werte, ohne Schluessel
     Collection<Schiff> schiffe = nameToShip.values();
     for (Schiff s : schiffe) {
       System.out.println(s);
@@ -60,6 +77,7 @@ public class MainProgramm3 {
     blah.put(schiff5.getName(), schiff5);
     blah.put(schiff6.getName(), schiff6);
 
+    // Alle Paare aus blah in nameToShip uebernehmen
     nameToShip.putAll(blah);
 
     System.out.println(nameToShip);

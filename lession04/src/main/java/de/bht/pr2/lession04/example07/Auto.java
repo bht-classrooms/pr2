@@ -3,6 +3,28 @@ package de.bht.pr2.lession04.example07;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Auto mit einer Collection als Attribut.
+ *
+ * Neue Konzepte in dieser Klasse (markiert mit "NEU"):
+ * - Eine Map als Attribut einer Klasse: {@code Map<String, Boolean>}
+ *   (Schluessel: Name der Ausruestung, Wert: vorhanden ja/nein).
+ * - Das Map-Objekt wird im Konstruktor erzeugt und mit Standardwerten
+ *   gefuellt. Ohne {@code new HashMap<>()} waere das Attribut null, und jeder
+ *   Zugriff wuerde eine NullPointerException ausloesen.
+ * - Wrapper-Klasse Boolean als Werttyp: Generics erlauben keine primitiven
+ *   Typen ({@code Map<String, boolean>} geht nicht). Autoboxing wandelt
+ *   true/false automatisch in Boolean-Objekte um.
+ * - Kapselung: Das Attribut ist private, und es gibt keinen Getter fuer die
+ *   Map. Aendern kann man sie nur ueber ausruestungEntfernen() und
+ *   ausruestungInstallieren().
+ * - put() dient zum Aendern UND zum Hinzufuegen: Ein vorhandener Schluessel
+ *   bekommt einen neuen Wert, ein neuer Schluessel wird angelegt.
+ * - ausruestungEntfernen() setzt den Wert auf false, statt das Paar mit
+ *   remove() zu loeschen. So bleibt sichtbar, dass die Ausruestung bekannt,
+ *   aber nicht vorhanden ist.
+ * - toString() gibt auch die Map aus; die Map hat selbst ein passendes toString().
+ */
 public class Auto {
 
   //-------------------
@@ -27,8 +49,9 @@ public class Auto {
     this.marke = marke; // Enum-Wert zuweisen
 
     //===== NEU =====
+    // Map erzeugen -- sonst waere das Attribut null
     sonstigeAusruestungen = new HashMap<String, Boolean>();
-    // Nach Standard vorhanden
+    // Nach Standard vorhanden (Autoboxing: true --> Boolean)
     sonstigeAusruestungen.put("Ersatzrad", true);
     sonstigeAusruestungen.put("Warndreieck", true);
     // Nach Standard nicht vorhanden
@@ -40,11 +63,13 @@ public class Auto {
 
   //===== NEU =====
   public void ausruestungEntfernen(String ausruestung) {
+    // Wert auf false setzen, Schluessel bleibt erhalten
     sonstigeAusruestungen.put(ausruestung, false);
   }
 
   //===== NEU =====
   public void ausruestungInstallieren(String ausruestung) {
+    // Vorhandener Schluessel: Wert ersetzen / neuer Schluessel: Paar anlegen
     sonstigeAusruestungen.put(ausruestung, true);
   }
 

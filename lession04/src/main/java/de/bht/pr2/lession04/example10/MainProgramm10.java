@@ -7,6 +7,30 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Objekt als Map-Schluessel, Collection als Map-Wert:
+ * Vorhandenes vs. neues Schluessel-Wert-Paar.
+ *
+ * Neue Konzepte in dieser Klasse:
+ * - Typisches Muster "Gruppieren": Aus einer flachen Liste (alleSchiffe)
+ *   wird eine Map aufgebaut, die jedem Besitzer die Liste seiner Schiffe
+ *   zuordnet.
+ * - Ablauf pro Element:
+ *   1. Schluessel aus dem Element ableiten (besitzerName ergibt Person).
+ *   2. containsKey(): Gibt es den Schluessel schon?
+ *      - ja:   vorhandene Liste mit get() holen
+ *      - nein: neue Liste erzeugen und mit put() in die Map eintragen
+ *   3. Element in die (jetzt sicher vorhandene) Liste einfuegen.
+ * - Referenz-Semantik: zielListe verweist auf dasselbe Listen-Objekt wie die
+ *   Map. Ein add() auf zielListe veraendert daher den Map-Inhalt, ein
+ *   erneutes put() ist nicht noetig.
+ * - Pro Schiff wird ein NEUES Person-Objekt erzeugt. containsKey() erkennt
+ *   es trotzdem als vorhanden, weil Person equals()/hashCode() ueberschreibt.
+ * - Die Variable zielListe wird vor dem if deklariert, damit sie nach dem
+ *   if-else in beiden Faellen verwendet werden kann.
+ * - Ausblick (Lambdas kommen spaeter): Das gleiche Muster geht kuerzer mit
+ *   {@code besitzerZuSchiffen.computeIfAbsent(besitzer, k -> new ArrayList<>()).add(schiff);}
+ */
 public class MainProgramm10 {
 
   // Objekt als Map-Schluessel
@@ -36,6 +60,8 @@ public class MainProgramm10 {
     // Inhalt einfuegen
     for (Schiff schiff : alleSchiffe) {
       String besitzerName = schiff.getBesitzerName();
+      // Jedes Mal ein neues Objekt -- dank equals()/hashCode() trotzdem
+      // als derselbe Schluessel erkannt
       Person besitzer = new Person(besitzerName);
       System.out.print("Besitzer: " + besitzer);
 
@@ -55,7 +81,8 @@ public class MainProgramm10 {
       }
 
       // Egal ob der Besitzer-Name neu oder vorhanden ist,
-      // ist zielListe jetzt initialisiert
+      // ist zielListe jetzt initialisiert.
+      // zielListe ist dasselbe Objekt wie in der Map --> kein erneutes put() noetig
       zielListe.add(schiff);
     }
 

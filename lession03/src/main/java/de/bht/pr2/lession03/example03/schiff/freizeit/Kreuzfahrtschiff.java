@@ -2,6 +2,26 @@ package de.bht.pr2.lession03.example03.schiff.freizeit;
 
 import de.bht.pr2.lession03.example03.schiff.Schiff;
 
+/**
+ * Unterklasse von Schiff.
+ *
+ * Konzepte in dieser Klasse:
+ * - Vererbung mit extends: Ein Kreuzfahrtschiff IST ein Schiff und erbt
+ *   dessen Attribute und Methoden.
+ * - Die Klasse liegt in einem anderen Package als Schiff. Deshalb ist ein
+ *   import noetig, und der Zugriff auf name, laenge, breite klappt nur, weil
+ *   sie protected sind.
+ * - super(...) ruft den Konstruktor der Oberklasse auf und muss die erste
+ *   Anweisung im Konstruktor sein.
+ * - this(...) ruft einen anderen Konstruktor derselben Klasse auf
+ *   (Konstruktor-Verkettung mit Standardwerten fuer das Schwimmbad).
+ * - Methode ueberschreiben: steuern() ergaenzt das Verhalten und ruft mit
+ *   super.steuern(...) die Version der Oberklasse auf.
+ * - toString() baut auf super.toString() auf.
+ * - @Override kennzeichnet ueberschriebene Methoden (steuern(), toString()).
+ *   Der Compiler meldet einen Fehler, wenn es in der Oberklasse keine
+ *   passende Methode gibt (z.B. bei einem Tippfehler im Namen).
+ */
 public class Kreuzfahrtschiff extends Schiff {
 
   // Attribute
@@ -50,7 +70,7 @@ public class Kreuzfahrtschiff extends Schiff {
     this.schwimmbadTiefe = schwimmbadTiefe;
   }
 
-  public void klimaanlageEinschlten() {
+  public void klimaanlageEinschalten() {
     klimaanlageAn = true;
   }
 
@@ -62,11 +82,14 @@ public class Kreuzfahrtschiff extends Schiff {
     System.out.println("Das Schwimmbad blubbert ..ooOOOooOO");
   }
 
+  // Ueberschreibt steuern() aus Schiff
+  @Override
   public void steuern(int winkel, String linksOderRechts) {
     System.out.println("Liebe Fahrgaeste, wir aendern die Richtung gleich!");
-    super.steuern(winkel, linksOderRechts);
+    super.steuern(winkel, linksOderRechts); // Version aus Schiff aufrufen
   }
 
+  @Override
   public String toString() {
     String returnString = "Kreuzfahrtschiff / "
         + super.toString()

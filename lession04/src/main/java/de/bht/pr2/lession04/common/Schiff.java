@@ -2,6 +2,24 @@ package de.bht.pr2.lession04.common;
 
 import java.util.Objects;
 
+/**
+ * Gemeinsame Klasse fuer mehrere Beispiele dieser Lektion (Package common).
+ *
+ * Neue Konzepte in dieser Klasse:
+ * - Konstruktor-Verkettung mit this(...): Der kurze Konstruktor ruft den
+ *   vollstaendigen Konstruktor auf und setzt fuer besitzerName den
+ *   Standardwert "unbekannt". So steht die Zuweisungslogik nur an einer Stelle.
+ * - equals()/hashCode() ueber mehrere Attribute (name, laenge, breite).
+ *   Damit lassen sich Schiffe in HashSet und HashMap korrekt vergleichen.
+ * - besitzerName ist bewusst NICHT Teil von equals()/hashCode():
+ *   Man entscheidet selbst, welche Attribute die Gleichheit eines Objekts
+ *   ausmachen. Wichtig ist nur, dass equals() und hashCode() dieselben
+ *   Attribute verwenden.
+ * - getName() liefert einen Wert, der sich als Map-Schluessel eignet
+ *   (example01 bis example04), sofern die Schiffsnamen eindeutig sind.
+ * - getBesitzerName() wird in example10 benutzt, um Schiffe nach ihrem
+ *   Besitzer zu gruppieren.
+ */
 public class Schiff {
 
   // Attribute
@@ -12,6 +30,7 @@ public class Schiff {
 
   // Konstruktoren
   public Schiff(String name, int laenge, int breite) {
+    // Konstruktor-Verkettung: ruft den Konstruktor mit 4 Parametern auf
     this(name, laenge, breite, "unbekannt");
   }
 
@@ -80,7 +99,9 @@ public class Schiff {
     return Objects.equals(name, schiff.name);
   }
 
+  @Override
   public int hashCode() {
+    // Dieselben Attribute wie in equals() -- besitzerName gehoert nicht dazu
     return Objects.hash(name, laenge, breite);
   }
 

@@ -1,5 +1,19 @@
 package de.bht.pr2.lession03.example03.schiff;
 
+/**
+ * Basisklasse der Schiff-Hierarchie (Schiff, Kreuzfahrtschiff,
+ * Luxuskreuzfahrtschiff).
+ *
+ * Konzepte in dieser Klasse:
+ * - protected-Attribute: Unterklassen duerfen direkt darauf zugreifen, auch
+ *   wenn sie in einem anderen Package liegen (hier: schiff.freizeit).
+ * - toString() ist mit @Override ueberschrieben. Der Compiler prueft dann,
+ *   dass es die Methode in der Oberklasse (Object) wirklich gibt.
+ * - steuern() wird in Kreuzfahrtschiff ueberschrieben und dort mit
+ *   super.steuern(...) wiederverwendet.
+ * - Die Klasse hat KEIN equals()/hashCode(). Darum gelten zwei Schiffe mit
+ *   gleichen Werten nicht als gleich (siehe example15).
+ */
 public class Schiff {
 
   // Attribute
