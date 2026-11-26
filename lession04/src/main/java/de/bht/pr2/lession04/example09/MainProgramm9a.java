@@ -6,6 +6,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * String als Map-Schluessel, Collection als Map-Wert.
+ *
+ * Neue Konzepte in dieser Klasse:
+ * - Der Wert einer Map kann selbst eine Collection sein:
+ *   {@code Map<String, List<Schiff>>}. So bildet man eine 1:n-Beziehung ab
+ *   (ein Besitzer, mehrere Schiffe).
+ * - Zugriff in zwei Schritten: besitzerNamenZuSchiffen.get("Anna Alt")
+ *   liefert Annas Liste, .get(0) daraus das erste Schiff.
+ * - Map und Variable verweisen auf dasselbe Listen-Objekt: Ein spaeteres
+ *   annasSchiffe.add(...) ist auch ueber die Map sichtbar.
+ * - Debugger: Die leere Ausgabe am Ende dient als Zeile fuer einen
+ *   Breakpoint, um den Inhalt der verschachtelten Struktur anzusehen.
+ */
 public class MainProgramm9a {
 
   // String als Map-Schluessel
@@ -32,6 +46,8 @@ public class MainProgramm9a {
         new HashMap<>();
     besitzerNamenZuSchiffen.put("Anna Alt", annasSchiffe);
     besitzerNamenZuSchiffen.put("Bob Berg", bobsSchiffe);
+
+    // Zugriff: besitzerNamenZuSchiffen.get("Anna Alt").get(0) --> "Anna 1"
 
     System.out.println(); // Fuer Breakpoint und Debugger gedacht
   }

@@ -6,6 +6,26 @@ import de.bht.pr2.lession03.example03.schiff.freizeit.Luxuskreuzfahrtschiff;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Up- und Downcasting - Wann nuetzlich?
+ *
+ * Neue Konzepte in dieser Klasse:
+ * - Eine {@code List<Schiff>} kann auch Objekte von Unterklassen aufnehmen
+ *   (Kreuzfahrtschiff, Luxuskreuzfahrtschiff). Beim Einfuegen findet
+ *   automatisch ein Upcasting statt.
+ * - Ueber eine Variable vom Typ Schiff sind nur die Methoden von Schiff
+ *   aufrufbar. Fuer spezielle Methoden (masseurAbrufen(),
+ *   schwimmbadBlubbern()) braucht man ein Downcasting.
+ * - Vor dem Downcasting mit instanceof pruefen, sonst droht eine
+ *   ClassCastException (Runtime-Error).
+ * - Reihenfolge der instanceof-Pruefungen: Die speziellste Klasse zuerst!
+ *   Ein Luxuskreuzfahrtschiff ist auch ein Kreuzfahrtschiff -- stuende die
+ *   Kreuzfahrtschiff-Pruefung oben, wuerde der Luxus-Zweig nie erreicht.
+ * - Klassen aus anderen Packages (schiff, schiff.freizeit) werden mit import
+ *   eingebunden.
+ * - Hinweis (seit Java 16): Pattern Matching fasst Pruefung und Cast
+ *   zusammen: {@code if (s instanceof Luxuskreuzfahrtschiff l) { l.masseurAbrufen(); }}
+ */
 public class MainProgramm3 {
 
   // Up- und Downcasting - Wann nuetzlich?
@@ -36,6 +56,7 @@ public class MainProgramm3 {
     //-----------------------------
     // Schiff fuer Schiff in der Liste bearbeiten
     for (Schiff s : listeVonSchiffen) {
+      // Speziellste Klasse zuerst pruefen!
       if (s instanceof Luxuskreuzfahrtschiff) {
         Luxuskreuzfahrtschiff l = (Luxuskreuzfahrtschiff) s; // Downcasting
         l.masseurAbrufen();

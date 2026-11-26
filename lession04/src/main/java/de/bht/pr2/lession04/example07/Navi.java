@@ -1,5 +1,15 @@
 package de.bht.pr2.lession04.example07;
 
+/**
+ * Navigationsgeraet -- Hilfsklasse fuer Auto (bekannt aus lession03).
+ *
+ * Konzepte in dieser Datei:
+ * - Einfache Klasse mit Attributen, Konstruktor und einer Methode.
+ * - Wird in Auto.naviBenutzen() als lokales Objekt erzeugt und benutzt:
+ *   Ein Objekt kann die Dienste eines anderen Objekts nutzen, ohne es als
+ *   Attribut zu speichern.
+ * - Zum Thema Map/Collections ist in dieser Klasse nichts neu.
+ */
 public class Navi {
 
   // Attribute

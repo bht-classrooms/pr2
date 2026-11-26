@@ -4,6 +4,20 @@ import de.bht.pr2.lession03.example03.schiff.Schiff;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * HashSet mit eigenen Objekten -- OHNE equals() und hashCode().
+ *
+ * Neue Konzepte in dieser Klasse:
+ * - Ein HashSet entscheidet mit hashCode() und equals(), ob zwei Elemente
+ *   gleich sind (also ob ein Element schon vorhanden ist).
+ * - Schiff ueberschreibt diese Methoden nicht. Dann gelten die Versionen
+ *   aus Object: Gleich ist nur, was dasselbe Objekt ist (Objekt-Identitaet,
+ *   wie bei ==).
+ * - Folge: Das Set enthaelt 4 Schiffe, obwohl schiffA1 und schiffA2 (bzw.
+ *   schiffB1 und schiffB2) dieselben Werte haben.
+ * - Unterschied: == vergleicht Referenzen, equals() soll Inhalte vergleichen
+ *   -- tut das aber erst, wenn eine Klasse es ueberschreibt (example16).
+ */
 public class MainProgramm15 {
 
   /* Ohne equals()- und hashCode()-Methode sind zwei Schiffe nur gleich,
@@ -26,6 +40,7 @@ public class MainProgramm15 {
     setVonSchiffen.add(schiffB1);
     setVonSchiffen.add(schiffB2);
 
+    // Ausgabe: 4 Schiffe -- jedes Objekt gilt als verschieden
     for (Schiff s : setVonSchiffen) {
       System.out.println(s);
     }

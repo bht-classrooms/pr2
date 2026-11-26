@@ -7,6 +7,22 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Objekt als Map-Schluessel, Collection als Map-Wert.
+ *
+ * Neue Konzepte in dieser Klasse (Vergleich mit MainProgramm9a):
+ * - Statt eines Strings dient ein eigenes Objekt (Person) als Schluessel:
+ *   {@code Map<Person, List<Schiff>>}.
+ * - Voraussetzung: Die Schluessel-Klasse ueberschreibt equals() und
+ *   hashCode() (siehe common.Person). Nur dann findet
+ *   besitzerZuSchiffen.get(new Person("Anna Alt")) Annas Schiffe, obwohl
+ *   es ein anderes Person-Objekt ist als beim put().
+ * - Ohne eigenes equals()/hashCode() wuerden die Methoden aus Object
+ *   verwendet. Dann zaehlt nur die Objekt-Identitaet (dieselbe Referenz).
+ * - Schluessel-Objekte sollte man nach dem Einfuegen nicht mehr veraendern
+ *   (z.B. anna.setName(...)): Sonst aendert sich ihr hashCode(), und der
+ *   Eintrag wird nicht mehr gefunden.
+ */
 public class MainProgramm9b {
 
   // Objekt als Map-Schluessel
@@ -38,6 +54,9 @@ public class MainProgramm9b {
         new HashMap<>();
     besitzerZuSchiffen.put(anna, annasSchiffe);
     besitzerZuSchiffen.put(bob, bobsSchiffe);
+
+    // Funktioniert dank equals()/hashCode() in Person auch mit neuem Objekt:
+    // besitzerZuSchiffen.get(new Person("Anna Alt")) --> annasSchiffe
 
     System.out.println(); // Fuer Breakpoint und Debugger gedacht
   }

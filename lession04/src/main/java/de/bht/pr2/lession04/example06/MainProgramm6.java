@@ -4,6 +4,21 @@ import de.bht.pr2.lession04.common.Person;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Operationen mit Collection-Objekten -- ArrayList.
+ *
+ * Neue Konzepte in dieser Klasse (Vergleich mit example05 / HashSet):
+ * - Dieselben Methoden addAll(), removeAll() und retainAll() gibt es fuer
+ *   jede Collection, weil sie im Interface Collection definiert sind.
+ * - Unterschied List und Set:
+ *   - addAll() haengt alle Elemente hinten an. Duplikate bleiben erhalten:
+ *     Bob und Carla stehen danach zweimal in der Liste.
+ *   - Die Reihenfolge der Elemente bleibt erhalten.
+ * - removeAll() entfernt JEDES Vorkommen eines Elements, das in listB steht.
+ * - retainAll() behaelt nur Elemente, die auch in listB vorkommen.
+ * - Verglichen wird ueber equals() der Elemente. hashCode() spielt bei einer
+ *   ArrayList keine Rolle (anders als beim HashSet).
+ */
 public class MainProgramm6 {
 
   // Operationen mit Collection-Objekten -- ArrayList
@@ -30,21 +45,21 @@ public class MainProgramm6 {
 
   public static void main(String[] args) {
     //----------------------------------
-    // addAll()
+    // addAll() -- Anna, Bob, Carla, Bob, Carla, Daniel (mit Duplikaten!)
     listenErzeugen();
     listA.addAll(listB);
     System.out.println("----- addAll() -----");
     System.out.println(listA);
 
     //----------------------------------
-    // removeAll()
+    // removeAll() -- Anna
     listenErzeugen();
     listA.removeAll(listB);
     System.out.println("----- removeAll() -----");
     System.out.println(listA);
 
     //----------------------------------
-    // retainAll()
+    // retainAll() -- Bob, Carla
     listenErzeugen();
     listA.retainAll(listB);
     System.out.println("----- retainAll() -----");

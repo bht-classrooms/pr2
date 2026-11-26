@@ -5,6 +5,21 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * HashSet - Methoden.
+ *
+ * Neue Konzepte in dieser Klasse:
+ * - add() eines schon vorhandenen Elements ("c") aendert das Set nicht.
+ *   add() liefert dann false, sonst true.
+ * - addAll() funktioniert mit jeder Collection, hier mit einer List.
+ * - contains(element) prueft, ob ein Element enthalten ist. Bei einem
+ *   HashSet ist das sehr schnell, auch bei vielen Elementen.
+ * - remove(element) entfernt ein Element ueber seinen Wert. Anders als bei
+ *   der List gibt es keinen Index: kein get(index), set(index, ...) oder
+ *   remove(index).
+ * - size(), isEmpty() und clear() funktionieren wie bei der ArrayList, weil
+ *   sie im gemeinsamen Interface Collection definiert sind.
+ */
 public class MainProgramm13 {
 
   // HashSet - Methoden
@@ -21,7 +36,7 @@ public class MainProgramm13 {
     System.out.println(set);
 
     System.out.println("----- add(\"c\") -----");
-    set.add("c");
+    set.add("c"); // Schon vorhanden --> keine Aenderung, add() liefert false
     System.out.println(set);
 
     System.out.println("----- addAll(x,y,z) -----");
@@ -37,7 +52,7 @@ public class MainProgramm13 {
     System.out.println(containsC + " :: " + set);
 
     System.out.println("----- remove(\"c\") -----");
-    set.remove("c");
+    set.remove("c"); // Entfernen ueber den Wert, nicht ueber einen Index
     System.out.println(set);
 
     System.out.println("----- contains(\"c\") -----");

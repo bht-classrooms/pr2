@@ -1,5 +1,19 @@
 package de.bht.pr2.lession03.example04.auto;
 
+/**
+ * Auto -- wird in MainProgramm4 in einer ArrayList gespeichert.
+ *
+ * Konzepte in dieser Klasse:
+ * - Enum als Attributtyp und Konstruktor-Parameter (AutoMarke marke).
+ *   Das Attribut kann nur einen der im enum definierten Werte annehmen
+ *   (oder null).
+ * - Kapselung: private Attribute, Zugriff nur ueber Getter und Setter.
+ * - Ein Setter kann Werte pruefen, bevor er sie uebernimmt (setFarbe()).
+ * - toString() ueberschreiben, damit println(auto) bzw. println(liste) eine
+ *   lesbare Ausgabe liefert (mit @Override gekennzeichnet).
+ * - Ein Objekt einer anderen Klasse (Navi) kann lokal in einer Methode
+ *   erzeugt und benutzt werden (naviBenutzen()).
+ */
 public class Auto {
 
   //-------------------
@@ -91,6 +105,7 @@ public class Auto {
     this.schiebedach = schiebedach;
   }
 
+  @Override
   public String toString() {
     String returnString = "Auto: " + farbe + ", " + anzahlVonTueren + " Tueren";
     if (schiebedach) {

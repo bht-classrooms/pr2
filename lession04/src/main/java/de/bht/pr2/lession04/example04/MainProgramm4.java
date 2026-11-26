@@ -6,6 +6,24 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+/**
+ * HashMap - Schluessel-Wert-Paare durchlaufen.
+ *
+ * Neue Konzepte in dieser Klasse:
+ * - Eine Map ist selbst keine Collection und kann nicht direkt mit der
+ *   for-each-Schleife durchlaufen werden. Man durchlaeuft stattdessen
+ *   keySet(), values() (siehe example03) oder entrySet().
+ * - keySet() liefert alle Schluessel als {@code Set<String>}. Es ist ein Set,
+ *   weil Schluessel eindeutig sind. Den Wert holt man dann mit get(key).
+ * - entrySet() liefert alle Paare als {@code Set<Entry<String, Schiff>>}.
+ * - Map.Entry ist ein inneres Interface von Map (Import: java.util.Map.Entry).
+ *   Ein Entry-Objekt kennt getKey() und getValue().
+ * - Verschachtelte Generics: Der Typ-Parameter des Sets ist selbst ein
+ *   generischer Typ ({@code Entry<String, Schiff>}).
+ * - entrySet() ist meist die bessere Wahl, wenn man Schluessel UND Wert
+ *   braucht: Die zusaetzliche Suche mit get() in jedem Durchlauf entfaellt.
+ * - Die Reihenfolge beim Durchlaufen einer HashMap ist nicht festgelegt.
+ */
 public class MainProgramm4 {
 
   // HashMap - Schluessel-Wert-Paare durchlaufen
@@ -25,6 +43,7 @@ public class MainProgramm4 {
     System.out.println("----- for-Schleife und keySet() -----");
     Set<String> namen = namenZuSchiffen.keySet();
     for (String name : namen) {
+      // Pro Schluessel eine zusaetzliche Suche mit get()
       System.out.println(name + " --> " + namenZuSchiffen.get(name));
     }
 
@@ -32,6 +51,7 @@ public class MainProgramm4 {
     System.out.println("----- for-Schleife und entrySet() -----");
     Set<Entry<String, Schiff>> entries = namenZuSchiffen.entrySet();
     for (Entry<String, Schiff> entry : entries) {
+      // Schluessel und Wert direkt aus dem Entry -- kein get() noetig
       System.out.println(entry.getKey() + " --> " + entry.getValue());
     }
   }

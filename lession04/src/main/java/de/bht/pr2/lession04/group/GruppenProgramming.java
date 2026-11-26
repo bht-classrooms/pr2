@@ -6,6 +6,18 @@ import de.bht.pr2.lession04.example07.AutoMarke;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Gruppenaufgabe: Map aus einem Attribut aufbauen und darauf zugreifen.
+ *
+ * Konzepte in dieser Klasse (Anwendung von example01 und example02):
+ * - Map mit einem Attribut des Objekts als Schluessel: farbe (String)
+ *   als Schluessel, Auto als Wert.
+ * - Zugriff ueber den Schluessel mit get("blau") statt Suche per Schleife.
+ * - Klassen aus einem anderen Package verwenden (import aus example07);
+ *   das geht, weil Auto und AutoMarke public sind.
+ * - Achtung: Haetten zwei Autos dieselbe Farbe, wuerde das zweite put()
+ *   das erste Auto ueberschreiben -- Schluessel sind eindeutig.
+ */
 public class GruppenProgramming {
 
   // Aufgaben:
